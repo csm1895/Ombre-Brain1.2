@@ -4,10 +4,9 @@
 
 A long-term emotional memory system for Claude. Tags memories using Russell's valence/arousal coordinates, stores them as Obsidian-compatible Markdown, connects via MCP, and has a forgetting curve.
 
-> **⚠️ 仓库临时迁移 / Repo temporarily moved**
-> GitHub 访问受限期间，代码暂时托管在 Gitea：
+> **⚠️ 备用链接 / Backup link**
+> Gitea 备用地址（GitHub 访问有问题时用）：
 > **https://git.p0lar1s.uk/P0lar1s/Ombre_Brain**
-> 下面的 `git clone` 地址请替换为上面这个。
 
 ---
 
@@ -19,11 +18,11 @@ A long-term emotional memory system for Claude. Tags memories using Russell's va
 
 **第一步：拉取代码**
 
-(⚠️ 仓库临时迁移 / Repo temporarily moved GitHub 访问受限期间，代码暂时托管在 Gitea： https://git.p0lar1s.uk/P0lar1s/Ombre_Brain 下面的 git clone 地址请临时替换为这个。)
+(💡 如果主链接访问有困难，可用备用 Gitea 地址：https://git.p0lar1s.uk/P0lar1s/Ombre_Brain)
 
 ```bash
-git clone https://git.p0lar1s.uk/P0lar1s/Ombre_Brain.git
-cd Ombre_Brain
+git clone https://github.com/P0luz/Ombre-Brain.git
+cd Ombre-Brain
 ```
 
 **第二步：创建 `.env` 文件**
@@ -85,7 +84,7 @@ docker logs ombre-brain
 
 ---
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/P0lar1zzZ/Ombre-Brain)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/P0luz/Ombre-Brain)
 
 ---
 
@@ -166,8 +165,8 @@ Claude ←→ MCP Protocol ←→ server.py
 ### 步骤 / Steps
 
 ```bash
-git clone https://git.p0lar1s.uk/P0lar1s/Ombre_Brain.git
-cd Ombre_Brain
+git clone https://github.com/P0luz/Ombre-Brain.git
+cd Ombre-Brain
 
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
@@ -299,7 +298,7 @@ $$base\_score = Importance \times activation\_count^{0.3} \times e^{-\lambda \ti
 
 ### Render
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/P0lar1zzZ/Ombre-Brain)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/P0luz/Ombre-Brain)
 
 > ⚠️ **免费层不可用**：Render 免费层**不支持持久化磁盘**，服务重启后记忆数据会丢失，且会在无流量时休眠。**必须使用 Starter（$7/mo）或以上**才能正常使用。
 > **Free tier won't work**: Render free tier has **no persistent disk** — all memory data is lost on restart. It also sleeps on inactivity. **Starter plan ($7/mo) or above is required.**
