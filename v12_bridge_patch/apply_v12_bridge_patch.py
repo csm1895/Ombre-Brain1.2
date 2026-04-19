@@ -15,7 +15,7 @@ s = s.replace(
     'return Response(str({"result": result}), media_type="application/json")'
 )
 
-bridge = r"""
+bridge = r'''
 # ============================================================
 # OmbreBrain V1.2 Bridge Patch
 # Adds test HTTP endpoints and post/peek compatibility layer.
@@ -31,8 +31,7 @@ def _bridge_notes_file():
     return d / "notes.jsonl"
 
 @mcp.tool()
-async def post(content: str, sender: str = "叶辰一", to: str = "") -> str:
-    """贴便利贴。to 为空表示群发。"""
+async def post(content: str, sender: str = "YC", to: str = "") -> str:
     import json
     import uuid
     from datetime import datetime
@@ -40,7 +39,7 @@ async def post(content: str, sender: str = "叶辰一", to: str = "") -> str:
     item = {
         "id": uuid.uuid4().hex[:12],
         "content": content,
-        "sender": sender or "叶辰一",
+        "sender": sender or "YC",
         "to": to or "",
         "created": datetime.now().isoformat(timespec="seconds"),
         "read_by": []
@@ -50,16 +49,15 @@ async def post(content: str, sender: str = "叶辰一", to: str = "") -> str:
     with f.open("a", encoding="utf-8") as out:
         out.write(json.dumps(item, ensure_ascii=False) + "\\n")
 
-    return f"便利贴已贴上：{item['id']}"
+    return f"note posted: {item['id']}"
 
 @mcp.tool()
-async def peek(reader: str = "叶辰一", mark_read: bool = True) -> str:
-    """查看未读便利贴。"""
+async def peek(reader: str = "YC", mark_read: bool = True) -> str:
     import json
 
     f = _bridge_notes_file()
     if not f.exists():
-        return "没有未读便利贴。"
+        return "no unread notes"
 
     all_items = []
     unread = []
@@ -84,10 +82,10 @@ async def peek(reader: str = "叶辰一", mark_read: bool = True) -> str:
         )
 
     if not unread:
-        return "没有未读便利贴。"
+        return "no unread notes"
 
     return "\\n\\n".join(
-        f"📌 {x.get('sender','')} → {x.get('to','所有人') or '所有人'}\\n{x.get('content','')}\\n[{x.get('created','')}]"
+        f"NOTE {x.get('sender','')} -> {x.get('to','all') or 'all'}\\n{x.get('content','')}\\n[{x.get('created','')}]"
         for x in unread
     )
 
@@ -135,18 +133,18 @@ async def api_test_post(request):
     body = await request.json()
     result = await post(
         content=body.get("content", ""),
-        sender=body.get("sender", "叶辰一"),
+        sender=body.get("sender", "YC"),
         to=body.get("to", "")
     )
     return Response(str({"result": result}), media_type="application/json")
 
 @mcp.custom_route("/api/test-peek", methods=["GET"])
 async def api_test_peek(request):
-    reader = request.query_params.get("reader", "叶辰一")
+    reader = request.query_params.get("reader", "YC")
     mark = request.query_params.get("mark_read", "true").lower() != "false"
     result = await peek(reader=reader, mark_read=mark)
     return Response(str({"result": result}), media_type="application/json")
-"""
+'''
 
 marker = '# --- Entry point / 启动入口 ---'
 if "OmbreBrain V1.2 Bridge Patch" not in s:

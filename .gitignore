@@ -15,3 +15,5 @@ scarp_paper
 backup_*/
 *.db
 import_state.json
+
+.DS_Store
