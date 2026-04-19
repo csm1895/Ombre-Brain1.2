@@ -1497,7 +1497,10 @@ async def peek(reader: str = "YC", mark_read: bool = True) -> str:
     for line in f.read_text(encoding="utf-8").splitlines():
         if not line.strip():
             continue
-        item = json.loads(line)
+        try:
+            item = json.loads(line)
+        except Exception:
+            continue
         target = item.get("to", "")
         read_by = item.get("read_by", [])
         if (not target or target == reader) and reader not in read_by:
