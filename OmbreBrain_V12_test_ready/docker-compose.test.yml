@@ -1,0 +1,13 @@
+services:
+  ombre-brain-v12-test:
+    image: p0luz/ombre-brain:latest
+    container_name: ombre-brain-v12-test
+    restart: unless-stopped
+    ports:
+      - "18001:8000"
+    environment:
+      - OMBRE_API_KEY=${OMBRE_API_KEY:-test-key}
+      - OMBRE_TRANSPORT=streamable-http
+      - OMBRE_BUCKETS_DIR=/data
+    volumes:
+      - ./buckets_test:/data
